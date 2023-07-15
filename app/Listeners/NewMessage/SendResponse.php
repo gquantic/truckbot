@@ -5,7 +5,7 @@ namespace App\Listeners\NewMessage;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class CheckUserChatExists
+class SendResponse
 {
     /**
      * Create the event listener.

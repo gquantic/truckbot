@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid;
 
+use App\Models\Message;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\OrchidServiceProvider;
@@ -34,17 +35,11 @@ class PlatformProvider extends OrchidServiceProvider
                 ->title('Navigation')
                 ->badge(fn () => 6),
 
-            Menu::make('Dropdown menu')
-                ->icon('code')
-                ->list([
-                    Menu::make('Sub element item 1')->icon('bag'),
-                    Menu::make('Sub element item 2')->icon('heart'),
-                ]),
-
-            Menu::make('Basic Elements')
-                ->title('Form controls')
-                ->icon('note')
-                ->route('platform.example.fields'),
+            Menu::make('Чаты')
+                ->title('Телеграм')
+                ->icon('bubbles')
+                ->badge(fn () => Message::query()->where('read', 0)->count())
+                ->route('chat.index'),
 
             Menu::make('Advanced Elements')
                 ->icon('briefcase')

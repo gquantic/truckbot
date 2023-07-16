@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Events\IncomingMessage;
+use App\Listeners\NewMessage\SendNotifiesToManagers;
+use App\Listeners\NewMessage\SendResponse;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -21,7 +23,8 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         IncomingMessage::class => [
-
+            SendResponse::class,
+            SendNotifiesToManagers::class,
         ]
     ];
 

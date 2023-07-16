@@ -15,16 +15,18 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->string('chat_id');
-            $table->string('user_id');
-            $table->string('first_name')->nullable();
-            $table->string('type')->nullable();
+            $table->foreignId('chat_id');
+
+            $table->bigInteger('message_id');
+
             $table->string('date')->nullable();
             $table->longText('text')->nullable();
             $table->string('language_code')->nullable();
-            $table->boolean('is_bot')->default(false);
 
             $table->string('theme')->default('none');
+            $table->boolean('read')->default(false);
+
+            $table->string('type')->default('in')->comment('in or out message');
 
             $table->timestamps();
         });

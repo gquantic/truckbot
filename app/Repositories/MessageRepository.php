@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Chat;
 use App\Models\Message;
 
 class MessageRepository
@@ -46,16 +47,32 @@ class MessageRepository
     {
         $message = new Message();
 
-        $message->chat_id = $this->chatId;
-        $message->user_id = $this->userId;
-        $message->first_name = $this->firstName;
-        $message->type = $this->type;
+        $message->chat_id = $this->selectChat();
+        $message->message_id = $this->messageId;
         $message->date = $this->date;
         $message->text = $this->text;
         $message->language_code = $this->languageCode;
-        $message->is_bot = $this->isBot;
 
         $message->save();
+    }
+
+    public function selectChat()
+    {
+        $chat = Chat::query()
+            ->firstOrNew(
+                [
+                    'id' => $this->chatId
+                ],
+                [
+                    'first_name' => $this->firstName,
+                    'is_bot' => $this->isBot,
+                    'type' => $this->type,
+                ]
+            );
+
+        $chat->save();
+
+        return $chat->id;
     }
 
     public function setTheme(): static

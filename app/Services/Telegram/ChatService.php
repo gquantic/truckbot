@@ -18,7 +18,6 @@ class ChatService
         Http::post("https://api.telegram.org/bot{$this->apiKey}/sendMessage", [
             'chat_id' => $chatId,
             'text' => $text,
-            'reply_to_message_id' => 12,
         ]);
     }
 }

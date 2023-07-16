@@ -25,7 +25,7 @@
             <a href="/admin/">Перейти в панель</a>
         @endif
 
-        <a href="" class="mt-5 tg-link">
+        <a href="https://t.me/rutowtruck_bot" class="mt-5 tg-link">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 256 256" version="1.1" preserveAspectRatio="xMidYMid">
                 <g>
                     <path d="M128,0 C57.307,0 0,57.307 0,128 L0,128 C0,198.693 57.307,256 128,256 L128,256 C198.693,256 256,198.693 256,128 L256,128 C256,57.307 198.693,0 128,0 L128,0 Z" fill="#40B3E0">
@@ -54,6 +54,17 @@
                 display: flex;
                 font-size: 17px;
                 font-weight: lighter;
+                transition: .2s ease;
+            }
+
+            .tg-link:hover {
+                background: #1a85bd;
+            }
+
+            .tg-link:active {
+                transform: scale(.97);
+                outline: 3px solid #1a85bd;
+                outline-offset: 2px;
             }
 
             .tg-link svg {

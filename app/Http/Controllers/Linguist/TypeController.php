@@ -15,18 +15,15 @@ class TypeController extends Controller
         $data = file_get_contents('php://input');
         $data = json_decode($data, true);
 
-        var_dump($data);
-        exit();
-
         if ($data['message']['message_id'] == 0)
             return Response::json(['status' => 'ok', 'message' => 'Repeat self message'], 200);
 
         return event(new IncomingMessage($data));
     }
 
-    public function sendMessage($chatId, $message)
+    public function sendMessage(Request $request)
     {
         $service = new ChatService();
-        $service->sendMessage($chatId, $message);
+        $service->sendMessage($request->input('chat_id'), $request->input('message'));
     }
 }

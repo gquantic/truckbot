@@ -61,7 +61,6 @@ class ChatShowScreen extends Screen
     {
         return [
             Layout::view('chat.messages'),
-            ChatShowLayout::class,
         ];
     }
 

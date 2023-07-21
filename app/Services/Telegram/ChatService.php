@@ -25,6 +25,12 @@ class ChatService
 
         if ($save)
             $this->saveResponse($chatId, $text);
+
+        // Отмечаем сообщения прочитанными
+        foreach (Chat::query()->find($chatId)->messages as $message) {
+            $message->read = 1;
+            $message->save();
+        }
     }
 
     public function saveResponse($chatId, $text)
@@ -36,6 +42,7 @@ class ChatService
         $message->date = Carbon::now()->timestamp;
         $message->text = $text;
         $message->language_code = 'ru-US';
+        $message->type = 'out';
 
         $message->save();
     }

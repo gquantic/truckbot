@@ -8,6 +8,7 @@ use App\Orchid\Layouts\Chat\ChatShowLayout;
 use App\Services\Telegram\ChatService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
@@ -76,6 +77,12 @@ class ChatShowScreen extends Screen
     {
         $data = $request->all();
 
+        Validator::validate($data, [
+            'message' => 'required'
+        ], [
+            'message.*' => 'Сообщение обязательно для заполнения'
+        ]);
+
         $message = new Message();
         $message->chat_id = $chat->id;
         $message->message_id = 0;
@@ -88,6 +95,6 @@ class ChatShowScreen extends Screen
         $message->save();
 
         $chatService = new ChatService();
-        $chatService->sendMessage($chat->id, $data['message']);
+        $chatService->sendMessage($chat->id, $data['message'], 'none', false);
     }
 }

@@ -15,3 +15,21 @@
         </div>
     @endforeach
 </div>
+
+<style>
+    textarea {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .fieldset {
+
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        window.scrollTo(0, document.body.scrollHeight + 600);
+        console.log('loaded');
+    });
+</script>

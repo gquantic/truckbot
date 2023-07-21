@@ -8,6 +8,7 @@ use Orchid\Screen\Field;
 use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\TD;
+use Orchid\Support\Color;
 
 class ChatShowLayout extends Rows
 {
@@ -31,6 +32,7 @@ class ChatShowLayout extends Rows
                 ->rows(4),
 
             Button::make('Отправить')
+                ->type(Color::DARK())
                 ->method('sendMessage'),
         ];
     }

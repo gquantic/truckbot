@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Chat;
 use App\Models\Message;
+use App\Services\Telegram\MessageService;
 
 class MessageRepository
 {
@@ -16,6 +17,8 @@ class MessageRepository
     public string $type;
     public string $date;
     public string $text;
+
+    public string $theme;
 
     public function __construct(array $messageData)
     {
@@ -34,6 +37,9 @@ class MessageRepository
 
         $this->setTheme();
         $this->save();
+
+        $messageService = new MessageService();
+        $messageService->handle($messageData['message']['chat']['id'], $messageData['message']['text'], $this->theme ?? 'none');
     }
 
     public function getOtherMessages(): \Illuminate\Database\Eloquent\Builder

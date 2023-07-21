@@ -18,5 +18,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('bot/type', 'App\Http\Controllers\Linguist\TypeController@handle');
 Route::get('bot/send/{chatId}/{message}', 'App\Http\Controllers\Linguist\TypeController@sendMessage');
+Route::resource('chats', 'App\Http\Controllers\Api\ChatController');
+
+Route::post('bot/type', 'App\Http\Controllers\Linguist\TypeController@handle');
+
+Route::post('bot/send', 'App\Http\Controllers\Linguist\TypeController@sendMessage');

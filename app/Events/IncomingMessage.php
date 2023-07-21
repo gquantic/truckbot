@@ -10,6 +10,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Response;
 
 class IncomingMessage
 {
@@ -20,7 +21,7 @@ class IncomingMessage
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function __construct(array $messageData)
     {
